@@ -1,0 +1,24 @@
+﻿@model List<AuthTokenData>
+@{
+	ViewData["Title"] = "All claims";
+}
+
+<h3>All claims</h3>
+<br />
+<table class="table table-hover table-borderless table-sm">
+	<thead class="thead-dark">
+		<tr>
+			<th class="text-light">Key</th>
+			<th class="text-light">Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.Key</td>
+				<td>@item.Value</td>
+			</tr>
+		}
+	</tbody>
+</table>
