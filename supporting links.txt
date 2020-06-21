@@ -1,0 +1,4 @@
+0. https://www.c-sharpcorner.com/article/azure-ad-b2c-with-asp-net-core-2-0/
+1. https://daniel-krzyczkowski.github.io/Azure-AD-B2C-and-ASP-.NET-Core-Web-API/
+2. https://github.com/Azure-Samples/active-directory-b2c-dotnetcore-webapp/tree/master/
+3. https://docs.microsoft.com/id-id/azure/active-directory-b2c/access-tokens

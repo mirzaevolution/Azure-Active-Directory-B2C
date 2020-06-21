@@ -10,9 +10,10 @@ namespace WebApiMultiFlow1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+
     public class TestController : ControllerBase
     {
+        [Authorize(Policy = Constants.UserReadScope)]
         public IActionResult GetData()
         {
             return Ok(new { message = "Hello world! Welcome to Azure B2C" });

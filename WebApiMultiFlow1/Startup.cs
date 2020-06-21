@@ -12,8 +12,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 using WebApiMultiFlow1.Models;
+using WebApiMultiFlow1.Helpers;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace WebApiMultiFlow1
 {
@@ -29,11 +32,28 @@ namespace WebApiMultiFlow1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             AzureADB2COptions options = new AzureADB2COptions();
             Configuration.Bind("AzureAdB2C", options);
+
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
             services.AddAuthentication(Constants.SignInSignUpPolicy)
                 .AddJwtBearer(Constants.SignInSignUpPolicy, GetJwtBearerOptions(options, Constants.SignInSignUpPolicy))
                 .AddJwtBearer(Constants.EditProfilePolicy, GetJwtBearerOptions(options, Constants.EditProfilePolicy));
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(Constants.UserReadScope, o =>
+                {
+                    o.Requirements.Add(new ReadAccessRequirement());
+                });
+                options.AddPolicy(Constants.UserWriteScope, o =>
+                {
+                    o.Requirements.Add(new WriteAccessRequirement());
+                });
+            });
+            services.AddTransient<IAuthorizationHandler, ReadAccessScopeHandler>();
+            services.AddTransient<IAuthorizationHandler, WriteAccessScopeHandler>();
             services.AddControllers();
 
         }
