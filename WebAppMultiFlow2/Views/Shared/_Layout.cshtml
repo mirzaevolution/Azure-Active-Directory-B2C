@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - WebAppMultiFlow1</title>
+	<title>@ViewData["Title"] - WebAppMultiFlow2</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -11,30 +11,29 @@
 	<header>
 		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
 			<div class="container">
-				<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Azure AD B2C</a>
+				<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebAppMultiFlow2</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
 						aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+
 				<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
 					<ul class="navbar-nav ml-auto">
 						@if (User.Identity.IsAuthenticated)
 						{
+
 							<li class="nav-item">
-								<a class="nav-link text-light" href="#">@User.Identity.Name</a>
+								<a class="nav-link text-light" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="EditProfile">Edit Profile</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link text-light" asp-controller="Auth" asp-action="EditProfile">Edit Profile</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-light" asp-controller="Auth" asp-action="Logout">Logout</a>
+								<a class="nav-link text-light" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">Sign out</a>
 							</li>
 						}
 						else
 						{
 
 							<li class="nav-item">
-								<a class="nav-link text-light" asp-controller="Auth" asp-action="Login">Login</a>
+								<a class="nav-link text-light" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">Sign in</a>
 							</li>
 						}
 					</ul>
@@ -43,7 +42,7 @@
 							<a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-light" asp-controller="Home" asp-action="AllClaims">Claims</a>
+							<a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="AllClaims">Claims</a>
 						</li>
 
 						<li class="nav-item">
@@ -65,7 +64,7 @@
 
 	<footer class="border-top footer text-muted">
 		<div class="container">
-			&copy; 2020 - WebAppMultiFlow1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+			&copy; 2020 - WebAppMultiFlow2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 		</div>
 	</footer>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>

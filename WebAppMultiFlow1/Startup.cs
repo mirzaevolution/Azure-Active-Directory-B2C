@@ -99,6 +99,9 @@ namespace WebAppMultiFlow1
                 {
                     options.Scope.Add(scope);
                 }
+                options.TokenValidationParameters.NameClaimType = "name";
+                options.TokenValidationParameters.RoleClaimType = "role";
+
                 options.Events.OnAuthorizationCodeReceived += OnAuthorizationCodeReceived;
                 options.Events.OnRemoteFailure += OnRemoteFailureHandler;
             };
